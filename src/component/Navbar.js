@@ -42,7 +42,7 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            <a className="main-nav-link nav-cta" href="#">
+            <a className="main-nav-link nav-cta" href="/login">
               Try for free
             </a>
           </li>
