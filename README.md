@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://spectacular-bublanina-f5818a.netlify.app/" target="blank"><img src="./src/img/Nutrafusion.png" width="200" alt="nutrafusion" /></a>
+</p>
+
 # Nutrafusion
 
 
