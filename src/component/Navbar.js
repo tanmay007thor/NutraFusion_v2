@@ -1,9 +1,18 @@
 import React, { useState } from "react";
-import Logo from '../img/Nutrafusion.png'
+import Logo from "../img/Nutrafusion.png";
+import { AuthContext } from "../Login/AuthContext";
+import BackgroundLetterAvatars from "./MUI Component/SetAvaTar";
 export default function Navbar() {
+  const { authData } = React.useContext(AuthContext);
+  const { user, token } = authData;
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [click, setClick] = useState(false);
-
+  const userData = localStorage.getItem("user");
+  const userloginname = JSON.parse(userData);
+  const name = userloginname?.name;
+  const [userShowLogo, setUserShowLogo] = useState(name);
+  
+  console.log(name);
   const handleNavToggle = () => {
     setIsNavOpen(!isNavOpen);
     setClick(!click);
@@ -12,11 +21,7 @@ export default function Navbar() {
   return (
     <header className={`header ${isNavOpen ? "nav-open" : ""}`}>
       <a href="#">
-        <img
-          className="logo"
-          alt="Nutrafusion logo"
-          src={Logo}
-        />
+        <img className="logo" alt="Nutrafusion logo" src={Logo} />
       </a>
 
       <nav className="main-nav">
@@ -42,9 +47,13 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            <a className="main-nav-link nav-cta" href="/login">
-              Try for free
-            </a>
+            {userShowLogo !== undefined ? (
+              <BackgroundLetterAvatars name={userShowLogo}   />
+            ) : (
+              <a className="main-nav-link nav-cta" href="/login">
+                Try for free
+              </a>
+            )}
           </li>
         </ul>
       </nav>
