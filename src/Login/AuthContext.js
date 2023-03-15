@@ -9,9 +9,11 @@ export const AuthProvider = ({ children }) => {
     setAuthData({ accessToken, user });
   };
 
+
   return (
     <AuthContext.Provider value={{ authData, updateAuthData }}>
       {children}
     </AuthContext.Provider>
   );
+
 };
