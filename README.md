@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://spectacular-bublanina-f5818a.netlify.app/" target="blank"><img src="./src/img/Nutrafusion (2).png" width="200" alt="nutrafusion" /></a>
+  <a href="https://spectacular-bublanina-f5818a.netlify.app/" target="blank"><img src="./src/img/Nutrafusion (2).png" width="500" alt="nutrafusion" /></a>
 </p>
 
 # Nutrafusion

@@ -6,8 +6,11 @@ import customer3Img from "../img/customers/customer-3.jpg";
 import customer4Img from "../img/customers/customer-4.jpg";
 import customer5Img from "../img/customers/customer-5.jpg";
 import customer6Img from "../img/customers/customer-6.jpg";
-
+import { AuthContext } from "../Login/AuthContext";
 export default function Hero() {
+  const { authData } = React.useContext(AuthContext);
+  const { user, token } = authData;
+  console.log(user);
   return (
     <div>
       <section className="section-hero">

@@ -2983,6 +2983,27 @@
 	bottom: 0px;
 }
 
+.Icon-is{
+	color: rgb(56, 255, 30);
+	transform: scale(2.8);
+	margin: 5rem 0rem 0rem 5rem ;
+	background-color: rgb(214, 255, 210);
+	border-radius: 600rem;
+}
+
+.Icon-is:hover{
+	color: rgb(164, 250, 153);
+	transform: scale(2.8);
+	margin: 5rem 0rem 0rem 05rem ;
+	background-color: rgb(188, 203, 181);
+	border-radius: 600rem;
+	cursor: pointer;
+}
+
+.Icon-is:active {
+	color: red;
+
+}
 
 
 

@@ -9,14 +9,18 @@ import SectionPricing from "./component/SectionPricing";
 import SectionCta from "./component/SectionCta";
 import Footer from "./component/Footer";
 import Login from "./Login/Login";
+import SignUp from "./Login/SignUp";
+import { AuthProvider } from "./Login/AuthContext";
 function App() {
   return (
     <BrowserRouter>
-    <Routes>
-    <Route path="/" element={<Home />}></Route>
-    <Route path="/login" element={<Login />}></Route>
-
-    </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/SignUp" element={<SignUp />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
