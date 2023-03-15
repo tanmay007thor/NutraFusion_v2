@@ -20,17 +20,18 @@ export default function SignUp() {
   // Function that updates state variables when input values change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    let gender = formData.gender;
   
     if (name === "gender") {
-      gender = value;
+      setFormData({
+        ...formData,
+        gender: value
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
     }
-  
-    setFormData({
-      ...formData,
-      [name]: value,
-      gender: gender,
-    });
   };
   
   
@@ -47,9 +48,9 @@ export default function SignUp() {
       })
       .then((response) => {
         console.log(response);
-        // setTimeout(() => {
-        //   navigate('/');
-        // }, 5000);
+        setTimeout(() => {
+          navigate('/login');
+        }, 5000);
       })
       .catch((error) => {
         console.log(error);
