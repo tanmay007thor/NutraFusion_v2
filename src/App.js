@@ -11,6 +11,8 @@ import Footer from "./component/Footer";
 import Login from "./Login/Login";
 import SignUp from "./Login/SignUp";
 import { AuthProvider } from "./Login/AuthContext";
+import ProfileSite from "./component/Profile/ProfileSite";
+import NotFound from "./component/NotFound/404";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +21,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/profile" element={<ProfileSite />} />
+          <Route path="/howitworks" element={<div><Navbar/><SectionHow /><Footer /></div>} />
+          <Route path="/meals" element={<div><Navbar/><SectionMeal /><Footer /></div>} />
+          <Route path="/testmonial" element={<div><Navbar/><SectionTestimonial /><Footer /></div>} />
+          <Route path="/pricing" element={<div><Navbar/><SectionPricing /><Footer /></div>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

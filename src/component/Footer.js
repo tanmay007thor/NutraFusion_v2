@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../img/Nutrafusion.png";
+
 export default function Footer() {
   return (
     <div>

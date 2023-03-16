@@ -7,12 +7,15 @@ import customer4Img from "../img/customers/customer-4.jpg";
 import customer5Img from "../img/customers/customer-5.jpg";
 import customer6Img from "../img/customers/customer-6.jpg";
 import { AuthContext } from "../Login/AuthContext";
+import { useNavigate } from "react-router-dom";
 export default function Hero() {
   const { authData } = React.useContext(AuthContext);
   const { user, token } = authData;
+  const navigate = useNavigate()
   console.log(user);
   return (
     <div>
+      
       <section className="section-hero">
         <div className="hero">
           <div className="hero-text-box">
@@ -24,10 +27,10 @@ export default function Hero() {
               eat healthy again. Tailored to your personal tastes and
               nutritional needs.
             </p>
-            <a href="#" className="btn btn--full margin-right-sm">
+            <a href="#" className="btn btn--full margin-right-sm" onClick={() => {navigate('/pricing')}}>
               Start eating well
             </a>
-            <a href="#" className="btn btn--outline">
+            <a href="#" className="btn btn--outline" onClick={() => {navigate('/howitworks')}}> 
               Learn more &darr;
             </a>
             <div className="delivered-meals">

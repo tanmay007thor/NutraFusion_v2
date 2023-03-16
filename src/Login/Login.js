@@ -33,7 +33,7 @@ export default function Login() {
 		localStorage.setItem('user', JSON.stringify(user));
         setTimeout(() => {
           navigate('/');
-        }, 5000);
+        }, 3000);
       })
       .catch((error) => {
         console.log(error);

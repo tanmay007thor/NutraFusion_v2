@@ -15,6 +15,7 @@ import gallery9Img from "../img/gallery/gallery-9.jpg";
 import gallery10Img from "../img/gallery/gallery-10.jpg";
 import gallery11Img from "../img/gallery/gallery-11.jpg";
 import gallery12Img from "../img/gallery/gallery-12.jpg";
+
 export default function SectionTestimonial() {
   return (
     <div>
