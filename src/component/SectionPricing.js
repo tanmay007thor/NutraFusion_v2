@@ -1,6 +1,11 @@
-import React from "react";
+import { useStatStyles } from "@chakra-ui/react";
+import React, { useState } from "react";
 
 export default function SectionPricing() {
+  const userData = localStorage.getItem("user");
+  const userloginname = JSON.parse(userData);
+  const name = userloginname?.name;
+  const [useLog, setUserLog] = useState(name);
   return (
     <div>
       <section class="section-pricing">
@@ -38,7 +43,14 @@ export default function SectionPricing() {
               </li>
             </ul>
             <div class="plan-sing-up">
-              <a href="#" class="btn btn--full">
+              <a
+                href={
+                  useLog 
+                    ? "https://buy.stripe.com/test_00gaH9auQ80TbVC8wy"
+                    : "/login"
+                }
+                class="btn btn--full"
+              >
                 Start eating well
               </a>
             </div>
@@ -75,7 +87,10 @@ export default function SectionPricing() {
               </li>
             </ul>
             <div class="plan-sing-up">
-              <a href="#" class="btn btn--full">
+              <a
+                href="https://buy.stripe.com/test_14k02v6eA5SL9NueUX"
+                class="btn btn--full"
+              >
                 Start eating well
               </a>
             </div>

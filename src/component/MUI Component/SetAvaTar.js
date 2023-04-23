@@ -22,18 +22,27 @@ function stringToColor(string) {
 }
 
 function stringAvatar(name) {
+  const nameSplit = name.split(' ');
+  let children;
+
+  if (nameSplit.length > 1) {
+    children = `${nameSplit[0][0].toUpperCase()}${nameSplit[1][0].toUpperCase()}`;
+  } else {
+    children = nameSplit[0][0].toUpperCase();
+  }
+
   return {
     sx: {
       bgcolor: stringToColor(name),
     },
-    children: `${name.split(' ')[0][0].toUpperCase()}${name.split(' ')[1][0].toUpperCase()}`,
+    children,
   };
 }
 
 // set avatar to props value 
 
 export default function BackgroundLetterAvatars(props) {
-    const {name} = props
+  const { name } = props;
   return (
     <Stack direction="row" spacing={2}>
       <Avatar {...stringAvatar(name)} />

@@ -1,14 +1,24 @@
 import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
 import TransgenderIcon from "@mui/icons-material/Transgender";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/main.css";
 import "../css/util.css";
 import Pic from "../img/img-01.png";
+
 import axios from "axios";
+import MuiAlert from "@mui/material/Alert";
+
 const url = "https://nutrafusion.onrender.com/api/v1/user";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 export default function SignUp() {
+  const [loginStatus, setLoginStatus] = React.useState(0);
+
   const navigate = useNavigate();
   const [formData, setFormData] = React.useState({
     email: "",
@@ -20,21 +30,19 @@ export default function SignUp() {
   // Function that updates state variables when input values change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-  
+
     if (name === "gender") {
       setFormData({
         ...formData,
-        gender: value
+        gender: value,
       });
     } else {
       setFormData({
         ...formData,
-        [name]: value
+        [name]: value,
       });
     }
   };
-  
-  
 
   // Function that handles form submission
   const handleSubmit = (event) => {
@@ -44,15 +52,18 @@ export default function SignUp() {
         email: formData.email,
         password: formData.password,
         name: formData.name,
-        gender : formData.gender
+        gender: formData.gender,
       })
       .then((response) => {
+        
+        setLoginStatus(201);
         console.log(response);
         setTimeout(() => {
-          navigate('/login');
-        }, 5000);
+          navigate("/login");
+        }, 1000);
       })
       .catch((error) => {
+        setLoginStatus(204);
         console.log(error);
         // handle error response
       });
@@ -151,8 +162,23 @@ export default function SignUp() {
             </div>
 
             <div className="container-login100-form-btn">
-              <button className="login100-form-btn" onClick={handleSubmit}>Sign Up</button>
-            </div> 
+              <button className="login100-form-btn" onClick={handleSubmit}>
+                Sign Up
+              </button>
+            </div>
+            <br></br>
+
+            {loginStatus === 201 ? (
+              <Alert severity="info" style={{ fontSize: "20px" }}>
+                Login Succeed !
+              </Alert>
+            ) : loginStatus === 0 ? (
+              ""
+            ) : (
+              <Alert severity="error" style={{ fontSize: "20px" }}>
+                Unauthorized !
+              </Alert>
+            )}
 
             <div class="text-center p-t-12">
               <span class="txt1">Forgot</span>

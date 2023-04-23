@@ -27,7 +27,7 @@ export default function Hero() {
               eat healthy again. Tailored to your personal tastes and
               nutritional needs.
             </p>
-            <a href="#" className="btn btn--full margin-right-sm" onClick={() => {navigate('/pricing')}}>
+            <a href="https://buy.stripe.com/test_00gaH9auQ80TbVC8wy " className="btn btn--full margin-right-sm" onClick={() => {navigate('/pricing')}}>
               Start eating well
             </a>
             <a href="#" className="btn btn--outline" onClick={() => {navigate('/howitworks')}}> 

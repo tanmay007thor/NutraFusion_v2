@@ -27,7 +27,7 @@ export default function ProfileSite() {
     localStorage.removeItem('accessToken')
     setTimeout(() => {
       navigate('/')
-    }, 3000);
+    }, 1000);
   }
 
 

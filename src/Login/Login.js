@@ -1,19 +1,27 @@
+import React, { useContext, useEffect, useState } from "react";
+import "../css/main.css";
+import "../css/util.css";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Pic from "../img/img-01.png";
+import { AuthContext } from "./AuthContext";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+const url = "https://nutrafusion.onrender.com/api/v1/login";
 
-import React, { useContext, useEffect, useState } from 'react';
-import '../css/main.css';
-import '../css/util.css';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import Pic from '../img/img-01.png';
-import { AuthContext } from './AuthContext';
-
-const url = 'https://nutrafusion.onrender.com/api/v1/login';
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function Login() {
-  const navigate = useNavigate();
-  const [loginDetails, setLoginDetails] = useState({ email: '', password: '' });
-  const { updateAuthData } = useContext(AuthContext);
+  const [open, setOpen] = React.useState(false);
 
+  const navigate = useNavigate();
+  const [loginDetails, setLoginDetails] = useState({ email: "", password: "" });
+  const { updateAuthData } = useContext(AuthContext);
+  const [loginStatus, setLoginStatus] = useState(0);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setLoginDetails((prevState) => ({ ...prevState, [name]: value }));
@@ -27,21 +35,21 @@ export default function Login() {
         password: loginDetails.password,
       })
       .then((response) => {
+        setLoginStatus(response.status);
         const { accessToken, user } = response.data;
         updateAuthData(accessToken, user);
-		localStorage.setItem('accessToken', accessToken);
-		localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("user", JSON.stringify(user));
         setTimeout(() => {
           navigate('/');
-        }, 3000);
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
+        setLoginStatus(401);
         // handle error response
       });
   };
-
-
 
   return (
     <div className="limiter">
@@ -54,7 +62,10 @@ export default function Login() {
           <form className="login100-form validate-form" onSubmit={handleSubmit}>
             <span className="login100-form-title">Member Login</span>
 
-            <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+            <div
+              className="wrap-input100 validate-input"
+              data-validate="Valid email is required: ex@abc.xyz"
+            >
               <input
                 className="input100"
                 type="text"
@@ -69,7 +80,10 @@ export default function Login() {
               </span>
             </div>
 
-            <div className="wrap-input100 validate-input" data-validate="Password is required">
+            <div
+              className="wrap-input100 validate-input"
+              data-validate="Password is required"
+            >
               <input
                 className="input100"
                 type="password"
@@ -89,6 +103,20 @@ export default function Login() {
                 Login
               </button>
             </div>
+            <br></br>
+            {loginStatus === 201 ? (
+  <Alert severity="info" style={{ fontSize: '20px' }}>
+    Login Succeed !
+  </Alert>
+) : loginStatus === 0 ? (
+  ''
+) : (
+  <Alert severity="error" style={{ fontSize: '20px' }}>
+    Unauthorized !
+  </Alert>
+)}
+
+
 
             <div className="text-center p-t-12">
               <span className="txt1">Forgot</span>
@@ -98,9 +126,12 @@ export default function Login() {
             </div>
 
             <div className="text-center p-t-136">
-              <a className="txt2" href="#" onClick={() => navigate('/SignUp')}>
+              <a className="txt2" href="#" onClick={() => navigate("/SignUp")}>
                 Create your Account
-                <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+                <i
+                  className="fa fa-long-arrow-right m-l-5"
+                  aria-hidden="true"
+                ></i>
               </a>
             </div>
           </form>
